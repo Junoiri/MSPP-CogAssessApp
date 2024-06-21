@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2869582467",
+    "project_id": "cogasessapp",
+    "storage_bucket": "cogasessapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2869582467:android:76f8b30ae6658e67da59b6",
+        "android_client_info": {
+          "package_name": "com.example.mspp_cogassessapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_41jN_InMtufx2G9vYNvyj57ONnZFnf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
