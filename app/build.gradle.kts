@@ -2,11 +2,15 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+
+    alias(libs.plugins.compose.compiler)
+
 }
 
 android {
     namespace = "com.example.mspp_cogassessapp"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.example.mspp_cogassessapp"
@@ -34,6 +38,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
@@ -45,7 +52,29 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+//    // Compose
+    implementation(libs.androidx.activity)
+
+    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.compose.ui:ui:1.6.8") // UI
+    implementation("androidx.compose.material:material:1.6.8")
+    implementation("androidx.compose.ui:ui-tooling:1.6.8")
+    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
+
 }
