@@ -1,9 +1,9 @@
-package com.example.mspp_cogassessapp
+package firebase
 
 import java.sql.Date
 import java.sql.Time
 
-data class Game(
+data class GameDto(
     var email: String = "",
     var date: Date=Date(System.currentTimeMillis()),
     var responseTime: Time,

@@ -1,6 +1,6 @@
-package firestore
+package firebase
 
-data class UserData(
+data class UserDataDto(
     var email: String = "",
     var name: String = "",
     var sex: String = "",
