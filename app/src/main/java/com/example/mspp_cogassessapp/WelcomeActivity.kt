@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mspp_cogassessapp.composable.HomeScreen
 import com.example.mspp_cogassessapp.composable.LoginScreen
 import com.example.mspp_cogassessapp.composable.RegisterScreen
 import com.example.mspp_cogassessapp.composable.WelcomeScreen
