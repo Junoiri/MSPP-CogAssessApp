@@ -1,5 +1,6 @@
 package com.example.mspp_cogassessapp
 
+import HomeScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.composable.ForgotPasswordScreen
-import com.example.mspp_cogassessapp.composable.HomeScreen
 import com.example.mspp_cogassessapp.composable.LoginScreen
 import com.example.mspp_cogassessapp.composable.RegisterScreen
 import com.example.mspp_cogassessapp.composable.WelcomeScreen
