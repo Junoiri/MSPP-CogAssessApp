@@ -77,4 +77,6 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.3.1")
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
+    // layout
+
 }
