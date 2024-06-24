@@ -1,0 +1,238 @@
+{
+  "name": "welcome",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "IQcDtF3TCfIuLtMfglnDQo",
+    "node": "4:11",
+    "version": "6057766631",
+    "component-id": "4364592418085f2ef0bb4ca023e3b04a83f3baf7"
+  },
+  "default": "Welcome",
+  "documentation": "Welcome Activity page",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Frame 1"
+      },
+      {
+        "type": "group",
+        "id": "Frame 2"
+      },
+      {
+        "type": "text",
+        "id": "Continue as guest"
+      },
+      {
+        "type": "image",
+        "id": "Login button 1"
+      },
+      {
+        "type": "image",
+        "id": "Register button 1"
+      },
+      {
+        "type": "image",
+        "id": "Ground 2"
+      },
+      {
+        "type": "image",
+        "id": "Ground 1"
+      }
+    ],
+    "modes": {
+      "Welcome": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Frame 1",
+              "Frame 2"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 240.0,
+              "saturation": 0.3513513513513514,
+              "value": 0.1450980392156863
+            }
+          },
+          {
+            "id": "Frame 1",
+            "margin": {
+              "top": 150.0,
+              "bottom": 193.0
+            },
+            "is-structured": false,
+            "children": [
+              "Continue as guest",
+              "Login button 1",
+              "Register button 1"
+            ]
+          },
+          {
+            "id": "Frame 2",
+            "is-structured": false,
+            "children": [
+              "Ground 2",
+              "Ground 1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Continue as guest",
+            "margin": {
+              "left": 101.0,
+              "top": 416.0,
+              "right": 70.0,
+              "bottom": 27.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 226.15384615384616,
+              "saturation": 0.1598360655737705,
+              "value": 0.9568627450980393
+            },
+            "text-content": "Continue as guest",
+            "overflow": "visible",
+            "text-align": "left",
+            "typeface": "Press Start 2P",
+            "underline": true
+          },
+          {
+            "id": "Login button 1",
+            "margin": {
+              "left": 46.0,
+              "top": 219.0,
+              "right": 17.0,
+              "bottom": 50.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "login_button_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Register button 1",
+            "margin": {
+              "left": 49.0,
+              "top": 220.0,
+              "right": 17.0,
+              "bottom": 50.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "register_button_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Ground 2",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 323.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 8.526512829121202e-14
+              }
+            },
+            "relative-transform": [
+              [
+                -1.0,
+                2.3201926491189795e-16,
+                0.0
+              ],
+              [
+                -2.3201926491189795e-16,
+                -1.0,
+                0.0
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 693.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 158.0
+              }
+            },
+            "image-content": "ground_2.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Ground 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 323.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 649.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 693.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 158.0
+              }
+            },
+            "image-content": "ground_2.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Welcome",
+      "size": {
+        "width": 360.0,
+        "height": 800.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
