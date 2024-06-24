@@ -1,20 +1,16 @@
 package com.example.mspp_cogassessapp.composable
 
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Female
-import androidx.compose.material.icons.filled.Male
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -22,26 +18,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mspp_cogassessapp.R
+import com.example.mspp_cogassessapp.firebase.Auth
+import com.example.mspp_cogassessapp.firebase.UserDataDto
 import com.example.mspp_cogassessapp.util.Screen
+import firebase.ErrorManager
 
 @Composable
 fun RegisterScreen(navController: NavController) {
+    val context = LocalContext.current
+    val errorManager = ErrorManager(context)
+
     RegisterScreenContent(
         onLoginClick = { navController.navigate(Screen.Login.route) },
-        onRegisterClick = { navController.navigate(Screen.Home.route) }
+        onRegisterClick = { email, password, name, sex, age ->
+            val auth = Auth(errorManager)
+            val userData = UserDataDto(email = email, name = name, sex = sex, age = age)
+            auth.registerUser(email, password, userData) { success ->
+                if (success) {
+                    navController.navigate(Screen.Home.route)
+                } else {
+                    // Error handling is done inside Auth class
+                }
+            }
+        }
     )
 }
 
 @Composable
 fun RegisterScreenContent(
     onLoginClick: () -> Unit,
-    onRegisterClick: () -> Unit
+    onRegisterClick: (String, String, String, String, Int) -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
     var age by remember { mutableStateOf(16) }
+    var sex by remember { mutableStateOf("Male") }
     val pink = colorResource(R.color.pink)
 
     Column(
@@ -105,11 +118,20 @@ fun RegisterScreenContent(
 
         // Sex Selection
         Row {
-            Icon(Icons.Default.Male, contentDescription = "Male")
+            Icon(
+                Icons.Default.Male, contentDescription = "Male", tint = if (sex == "Male") pink else Color.Gray,
+                modifier = Modifier.clickable { sex = "Male" }
+            )
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(Icons.Default.Female, contentDescription = "Female")
+            Icon(
+                Icons.Default.Female, contentDescription = "Female", tint = if (sex == "Female") pink else Color.Gray,
+                modifier = Modifier.clickable { sex = "Female" }
+            )
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(Icons.Default.Person, contentDescription = "Other")
+            Icon(
+                Icons.Default.Person, contentDescription = "Other", tint = if (sex == "Other") pink else Color.Gray,
+                modifier = Modifier.clickable { sex = "Other" }
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -128,7 +150,10 @@ fun RegisterScreenContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         // Register Button
-        Button(onClick = onRegisterClick, colors = ButtonDefaults.buttonColors(backgroundColor = pink)) {
+        Button(
+            onClick = { onRegisterClick(email, password, name, sex, age) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = pink)
+        ) {
             Text("REGISTER")
         }
 
@@ -144,5 +169,5 @@ fun RegisterScreenContent(
 @Preview
 @Composable
 fun PreviewRegisterScreen() {
-    RegisterScreenContent({}, {})
+    RegisterScreenContent({}, { _, _, _, _, _ -> })
 }

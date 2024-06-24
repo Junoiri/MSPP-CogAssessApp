@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -17,13 +17,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mspp_cogassessapp.R
+import com.example.mspp_cogassessapp.firebase.Auth
 import com.example.mspp_cogassessapp.util.Screen
+import firebase.ErrorManager
 
 @Composable
 fun LoginScreen(navController: NavController) {
+    val context = LocalContext.current
+    val errorManager = ErrorManager(context)
+
     LoginScreenContent(
         onRegisterClick = { navController.navigate(Screen.Register.route) },
-        onLoginClick = { navController.navigate(Screen.Home.route) },
+        onLoginClick = { email, password ->
+            val auth = Auth(errorManager)
+            auth.loginUser(email, password) { success ->
+                if (success) {
+                    navController.navigate(Screen.Home.route)
+                } else {
+                    // Error handling is done inside Auth class
+                }
+            }
+        },
         onForgotPasswordClick = { navController.navigate(Screen.ForgotPassword.route) }
     )
 }
@@ -31,7 +45,7 @@ fun LoginScreen(navController: NavController) {
 @Composable
 fun LoginScreenContent(
     onRegisterClick: () -> Unit,
-    onLoginClick: () -> Unit,
+    onLoginClick: (String, String) -> Unit,
     onForgotPasswordClick: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
@@ -97,7 +111,10 @@ fun LoginScreenContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         // Login Button
-        Button(onClick = onLoginClick, colors = ButtonDefaults.buttonColors(backgroundColor = pink)) {
+        Button(
+            onClick = { onLoginClick(email, password) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = pink)
+        ) {
             Text("LOGIN")
         }
 
@@ -113,5 +130,5 @@ fun LoginScreenContent(
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    LoginScreenContent({}, {}, {})
+    LoginScreenContent({}, { _, _ -> }, {})
 }
