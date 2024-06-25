@@ -10,4 +10,6 @@ sealed class Screen(val route: String) {
     object NamikPlay : Screen("namikPlay")
     object StrooperInfo : Screen("strooperInfo")
     object StrooperPlay : Screen("strooperPlay")
+    object VismerInfo : Screen("vismerInfo")
+    object VismerPlay : Screen("vismerPlay")
 }

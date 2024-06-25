@@ -66,11 +66,10 @@ fun GamesPage(navController: NavController) {
                         .aspectRatio(1f)  // Ensures the cards are square
                         .fillMaxWidth()
                         .clickable {
-                            if (title == "Namik") {
-                                navController.navigate(Screen.NamikInfo.route)
-                            }
-                            if (title == "Strooper") {
-                                navController.navigate(Screen.StrooperInfo.route)
+                            when (title) {
+                                "Namik" -> navController.navigate(Screen.NamikInfo.route)
+                                "Strooper" -> navController.navigate(Screen.StrooperInfo.route)
+                                "Vismer" -> navController.navigate(Screen.VismerInfo.route)
                             }
                         }
                 ) {
@@ -150,3 +149,4 @@ fun PreviewGamesPage() {
     val navController = rememberNavController()
     GamesPage(navController)
 }
+

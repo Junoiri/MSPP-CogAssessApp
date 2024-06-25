@@ -47,7 +47,7 @@ fun StrooperInfoScreen(navController: NavController) {
                 title = { Text("Test Info", color = colorResource(id = R.color.text)) },
                 navigationIcon = {
                     IconButton(onClick = { }) {
-                        Icon(Icons.Filled.Menu, contentDescription = "Menu", tint = colorResource(id = R.color.sapphire))
+                        Icon(Icons.Filled.Menu, contentDescription = "Menu", tint = colorResource(id = R.color.mauve))
                     }
                 },
                 actions = {
@@ -71,7 +71,7 @@ fun StrooperInfoScreen(navController: NavController) {
             ) {
                 item {
                     Image(
-                        painter = painterResource(id = R.drawable.bg_card_blue),
+                        painter = painterResource(id = R.drawable.bg_card_purple),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -82,10 +82,10 @@ fun StrooperInfoScreen(navController: NavController) {
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Stroop Test",
+                        text = "Strooper",
                         fontSize = 32.sp,
                         fontFamily = pressStartFontFamily,
-                        color = colorResource(id = R.color.blue),
+                        color = colorResource(id = R.color.mauve),
                         modifier = Modifier.padding(start = 16.dp)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
@@ -101,7 +101,7 @@ fun StrooperInfoScreen(navController: NavController) {
                         text = "Info",
                         fontSize = 24.sp,
                         fontFamily = pressStartFontFamily,
-                        color = colorResource(id = R.color.blue),
+                        color = colorResource(id = R.color.mauve),
                         modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                     )
                     Text(
@@ -115,7 +115,7 @@ fun StrooperInfoScreen(navController: NavController) {
                         text = "Instructions",
                         fontSize = 24.sp,
                         fontFamily = pressStartFontFamily,
-                        color = colorResource(id = R.color.blue),
+                        color = colorResource(id = R.color.mauve),
                         modifier = Modifier
                             .padding(end = 16.dp, top = 16.dp)
                             .fillMaxWidth()
@@ -142,7 +142,7 @@ fun StrooperInfoScreen(navController: NavController) {
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.button_blue),
+                    painter = painterResource(id = R.drawable.button_purple),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier

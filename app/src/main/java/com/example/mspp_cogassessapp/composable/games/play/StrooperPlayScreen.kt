@@ -80,7 +80,7 @@ fun StrooperPlayScreen(navController: NavController) {
 
         val gameData = GameDto(
             email = email,
-            title = "Stroop Test",
+            title = "Strooper",
             date = Date(System.currentTimeMillis()),
             responseTime = Time(averageResponseTime.toLong()),
             totalTime = Time(totalTime),
