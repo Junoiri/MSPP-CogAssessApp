@@ -1,13 +1,11 @@
 package com.example.mspp_cogassessapp.composable
 
-import android.graphics.Color as AndroidColor
+import LoadingStrip
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
@@ -26,10 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
-import com.example.mspp_cogassessapp.firebase.Game
-import com.example.mspp_cogassessapp.firebase.GameDto
 import com.google.firebase.auth.FirebaseAuth
-import firebase.ErrorManager
 import kotlinx.coroutines.delay
 import java.sql.Time
 import java.util.Date
@@ -73,29 +68,11 @@ fun StrooperPlayScreen(navController: NavController) {
         isMatching = counter < 9
     }
 
-    fun endGame(context: android.content.Context) {
-        val email = FirebaseAuth.getInstance().currentUser?.email ?: ""
-        val averageResponseTime = if (responseTimes.isNotEmpty()) responseTimes.average() else 0.0
-        val accuracy = (score.toDouble() / 18) * 100
-
-        val gameData = GameDto(
-            email = email,
-            title = "Stroop Test",
-            date = Date(System.currentTimeMillis()),
-            responseTime = Time(averageResponseTime.toLong()),
-            totalTime = Time(totalTime),
-            accuracy = accuracy
-        )
-
-        val errorManager = ErrorManager(context)
-        val game = Game(errorManager)
-        game.storeGame(gameData) { success ->
-            if (success) {
-                // Show success message
-            } else {
-                // Handle error
-            }
+    fun checkMatch() {
+        if (currentColor.toArgb() == wordColorMap[currentWord]?.toArgb()) {
+            score++
         }
+        updateTest()
     }
 
     val context = LocalContext.current
@@ -113,20 +90,26 @@ fun StrooperPlayScreen(navController: NavController) {
             }
         }
         showAnswer = true
-        endGame(context)
+        endGame(
+            context = context,
+            email = FirebaseAuth.getInstance().currentUser?.email ?: "",
+            title = "Stroop Test",
+            averageResponseTime = if (responseTimes.isNotEmpty()) responseTimes.average() else 0.0,
+            totalTime = totalTime,
+            accuracy = (score.toDouble() / 18) * 100
+        ) { success ->
+            if (success) {
+                navController.popBackStack()
+            } else {
+                // Handle error
+            }
+        }
     }
 
     val loadingProgress by animateFloatAsState(
         targetValue = if (counter > 0) counter / 18f else 0f,
         animationSpec = tween(durationMillis = 3000, easing = LinearEasing)
     )
-
-    fun checkMatch() {
-        if (currentColor.toArgb() == wordColorMap[currentWord]?.toArgb()) {
-            score++
-        }
-        updateTest()
-    }
 
     Scaffold(
         topBar = {
@@ -206,38 +189,6 @@ fun StrooperPlayScreen(navController: NavController) {
             }
         }
     }
-}
-
-@Composable
-fun LoadingStrip(color: Color, progress: Float) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(24.dp)
-            .background(color)
-            .fillMaxWidth(fraction = progress)
-    )
-}
-
-@Composable
-fun PauseDialog(onResume: () -> Unit, onQuit: () -> Unit) {
-    val pressStartFontFamily = FontFamily(Font(R.font.press_start))
-
-    AlertDialog(
-        onDismissRequest = { /* Do nothing */ },
-        title = { Text(text = "Game Paused", fontFamily = pressStartFontFamily) },
-        text = { Text("Would you like to resume or quit the game?", fontFamily = pressStartFontFamily) },
-        confirmButton = {
-            Button(onClick = onResume) {
-                Text("Resume", fontFamily = pressStartFontFamily)
-            }
-        },
-        dismissButton = {
-            Button(onClick = onQuit) {
-                Text("Quit", fontFamily = pressStartFontFamily)
-            }
-        }
-    )
 }
 
 @Preview(showBackground = true)
