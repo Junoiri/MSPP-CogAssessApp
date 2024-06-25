@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.unit.dp
+import com.example.mspp_cogassessapp.composable.ProfilePage
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
