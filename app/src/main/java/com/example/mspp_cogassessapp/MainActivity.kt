@@ -1,6 +1,8 @@
 package com.example.mspp_cogassessapp
 
 import HomeScreen
+import NamikInfoScreen
+import NamikPlayScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,5 +34,7 @@ fun AppNavigator() {
         composable(Screen.Register.route) { RegisterScreen(navController) }
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.ForgotPassword.route) { ForgotPasswordScreen(navController) }
+        composable(Screen.NamikInfo.route) { NamikInfoScreen(navController) }
+        composable(Screen.NamikPlay.route) { NamikPlayScreen(navController) }
     }
 }
