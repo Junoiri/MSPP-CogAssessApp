@@ -1,3 +1,5 @@
+package com.example.mspp_cogassessapp.composable
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -15,10 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -31,7 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
 
 @Composable
-fun VismerInfoScreen(navController: NavController) {
+fun SimonInfoScreen(navController: NavController) {
     // Load the font family
     val pressStartFontFamily = remember { FontFamily(Font(R.font.press_start)) }
 
@@ -76,7 +76,7 @@ fun VismerInfoScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Vismer",
+                    text = "Simon",
                     fontSize = 32.sp,
                     fontFamily = pressStartFontFamily,
                     color = colorResource(id = R.color.blue),  // Use the blue color from colors.xml
@@ -99,7 +99,7 @@ fun VismerInfoScreen(navController: NavController) {
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp)  // Padding for the info header
                 )
                 Text(
-                    "The Recognition Test WOM-REST combines elements from well-known cognitive assessments like the Symbol Search Test (WAIS), the Wisconsin Card Sorting Test (WCST), and Raven's Progressive Matrices.",
+                    "The Simon Test combines elements from well-known cognitive assessments like the Symbol Search Test (WAIS), the Wisconsin Card Sorting Test (WCST), and Raven's Progressive Matrices.",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     color = colorResource(id = R.color.text),
@@ -116,7 +116,7 @@ fun VismerInfoScreen(navController: NavController) {
                         .wrapContentWidth(Alignment.End)  // Align to the right
                 )
                 Text(
-                    "In this test, you'll see a sequence of three objects on the screen. First, you'll need to memorize these objects. Then, on the next screen, you'll be asked to identify the original sequence from a group of four options. Your score will be based on the number of correct answers, which will determine your accuracy percentage.",
+                    "In this test, you'll see the word 'left' or 'right' appear in different positions on the screen. Press the left button if the word is 'left' and the right button if the word is 'right', regardless of its position. Your score will be based on the number of correct answers, which will determine your accuracy percentage.",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     color = colorResource(id = R.color.text),
@@ -147,7 +147,7 @@ fun VismerInfoScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewVismerInfoScreen() {
+fun PreviewSimonInfoScreen() {
     val navController = rememberNavController()
-    VismerInfoScreen(navController)
+    SimonInfoScreen(navController)
 }
