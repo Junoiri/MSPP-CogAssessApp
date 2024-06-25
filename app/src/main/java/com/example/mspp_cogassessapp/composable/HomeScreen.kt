@@ -19,6 +19,7 @@ import com.example.mspp_cogassessapp.R
 import androidx.compose.foundation.pager.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
+import com.example.mspp_cogassessapp.composable.ProfilePage
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
