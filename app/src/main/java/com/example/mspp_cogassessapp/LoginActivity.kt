@@ -1,5 +1,7 @@
 package com.example.mspp_cogassessapp
 
+import NamikInfoScreen
+import NamikPlayScreen
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge

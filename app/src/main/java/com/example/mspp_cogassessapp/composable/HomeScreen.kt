@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -18,6 +18,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
 import androidx.compose.foundation.pager.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.Gamepad
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.unit.dp
 import com.example.mspp_cogassessapp.composable.ProfilePage
 import kotlinx.coroutines.launch
@@ -84,13 +87,12 @@ fun HomeScreen(navController: NavController) {
                 when (page) {
                     0 -> ProfilePage()
                     1 -> HomePage()
-                    2 -> GamesPage()
+                    2 -> GamesPage(navController)  // Pass the navController here
                 }
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
