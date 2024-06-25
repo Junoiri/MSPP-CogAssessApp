@@ -1,11 +1,11 @@
 package com.example.mspp_cogassessapp.composable
 
-import LoadingStrip
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
@@ -189,6 +189,17 @@ fun StrooperPlayScreen(navController: NavController) {
             }
         }
     }
+}
+
+@Composable
+fun LoadingStrip(color: Color, progress: Float) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(24.dp)
+            .background(color)
+            .fillMaxWidth(fraction = progress)
+    )
 }
 
 @Preview(showBackground = true)
