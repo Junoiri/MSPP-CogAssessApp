@@ -1,6 +1,8 @@
 package com.example.mspp_cogassessapp.firebase
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObjects
 import firebase.ErrorManager
 import java.util.Date
 import java.sql.Time
@@ -29,12 +31,18 @@ class Game(private val errorManager: ErrorManager) {
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val games = task.result?.toObjects(GameDto::class.java)
+                    val games = task.result?.toObjects<GameDto>()
                     onComplete(games)
                 } else {
                     errorManager.showError("Failed to retrieve games: ${task.exception?.message}")
                     onComplete(null)
                 }
             }
+    }
+
+    // Fetch user games
+    fun fetchUserGames(onComplete: (List<GameDto>?) -> Unit) {
+        val email = FirebaseAuth.getInstance().currentUser?.email ?: ""
+        getGamesByUser(email, onComplete)
     }
 }
