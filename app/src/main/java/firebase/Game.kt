@@ -9,16 +9,7 @@ class Game(private val errorManager: ErrorManager) {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     // Store a new game
-    fun storeGame(email: String, title: String, responseTime: Time, totalTime: Time, accuracy: Double, onComplete: (Boolean) -> Unit) {
-        val gameData = GameDto(
-            email = email,
-            title = title,
-            date = Date(System.currentTimeMillis()),
-            responseTime = responseTime,
-            totalTime = totalTime,
-            accuracy = accuracy
-        )
-
+    fun storeGame(gameData: GameDto, onComplete: (Boolean) -> Unit) {
         db.collection("games").add(gameData)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

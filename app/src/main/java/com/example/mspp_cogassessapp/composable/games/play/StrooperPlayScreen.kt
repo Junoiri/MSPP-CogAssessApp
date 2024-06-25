@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -25,7 +26,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
+import com.example.mspp_cogassessapp.firebase.Game
+import com.example.mspp_cogassessapp.firebase.GameDto
+import com.google.firebase.auth.FirebaseAuth
+import firebase.ErrorManager
 import kotlinx.coroutines.delay
+import java.sql.Time
+import java.util.Date
 import kotlin.random.Random
 
 @Composable
@@ -36,6 +43,8 @@ fun StrooperPlayScreen(navController: NavController) {
     var showDialog by remember { mutableStateOf(false) }
     var counter by remember { mutableStateOf(18) }
     var score by remember { mutableStateOf(0) }
+    var totalTime by remember { mutableStateOf(0L) }
+    var responseTimes = remember { mutableStateListOf<Long>() }
     var currentWord by remember { mutableStateOf("") }
     var currentColor by remember { mutableStateOf(Color.White) }
     var isMatching by remember { mutableStateOf(false) }
@@ -64,15 +73,47 @@ fun StrooperPlayScreen(navController: NavController) {
         isMatching = counter < 9
     }
 
+    fun endGame(context: android.content.Context) {
+        val email = FirebaseAuth.getInstance().currentUser?.email ?: ""
+        val averageResponseTime = if (responseTimes.isNotEmpty()) responseTimes.average() else 0.0
+        val accuracy = (score.toDouble() / 18) * 100
+
+        val gameData = GameDto(
+            email = email,
+            title = "Stroop Test",
+            date = Date(System.currentTimeMillis()),
+            responseTime = Time(averageResponseTime.toLong()),
+            totalTime = Time(totalTime),
+            accuracy = accuracy
+        )
+
+        val errorManager = ErrorManager(context)
+        val game = Game(errorManager)
+        game.storeGame(gameData) { success ->
+            if (success) {
+                // Show success message
+            } else {
+                // Handle error
+            }
+        }
+    }
+
+    val context = LocalContext.current
+
     LaunchedEffect(Unit) {
         while (counter > 0) {
+            val startTime = System.currentTimeMillis()
             delay(3000)
             if (!isPaused) {
+                val endTime = System.currentTimeMillis()
+                totalTime += (endTime - startTime)
+                responseTimes.add(endTime - startTime)
                 counter--
                 updateTest()
             }
         }
         showAnswer = true
+        endGame(context)
     }
 
     val loadingProgress by animateFloatAsState(
@@ -83,9 +124,6 @@ fun StrooperPlayScreen(navController: NavController) {
     fun checkMatch() {
         if (currentColor.toArgb() == wordColorMap[currentWord]?.toArgb()) {
             score++
-            // Add a Toast for correct answer (if desired)
-        } else {
-            // Add a Toast for incorrect answer (if desired)
         }
         updateTest()
     }
