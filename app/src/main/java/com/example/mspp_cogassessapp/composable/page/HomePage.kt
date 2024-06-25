@@ -22,6 +22,6 @@ fun HomePage() {
 //            .padding(10.dp)
 //            .background(colorResource(id = R.color.base), RoundedCornerShape(10.dp))
     ) {
-        Text("Welcome to the Home Page!")
+        Text("Your user data:")
     }
 }

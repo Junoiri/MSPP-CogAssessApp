@@ -1,3 +1,5 @@
+package com.example.mspp_cogassessapp.composable
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -61,7 +63,7 @@ fun StrooperInfoScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.mantle))
-                .padding(16.dp)  // Added padding inside the column
+                .padding(16.dp)
         ) {
             LazyColumn(
                 modifier = Modifier
@@ -75,24 +77,24 @@ fun StrooperInfoScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(200.dp)
-                            .padding(bottom = 16.dp)  // Added padding below the image
+                            .padding(bottom = 16.dp)
                             .clip(RoundedCornerShape(16.dp))
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Strooper",
+                        text = "Stroop Test",
                         fontSize = 32.sp,
                         fontFamily = pressStartFontFamily,
-                        color = colorResource(id = R.color.blue),  // Use the blue color from colors.xml
-                        modifier = Modifier.padding(start = 16.dp)  // Increased padding around the game name text
+                        color = colorResource(id = R.color.blue),
+                        modifier = Modifier.padding(start = 16.dp)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Visual Memory Test",
+                        text = "INH-REST: Equivalencies Test",
                         fontSize = 18.sp,
                         fontFamily = pressStartFontFamily,
                         color = colorResource(id = R.color.text),
-                        modifier = Modifier.padding(start = 16.dp, top = 6.dp)  // Padding on the left side
+                        modifier = Modifier.padding(start = 16.dp, top = 6.dp)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
@@ -100,14 +102,14 @@ fun StrooperInfoScreen(navController: NavController) {
                         fontSize = 24.sp,
                         fontFamily = pressStartFontFamily,
                         color = colorResource(id = R.color.blue),
-                        modifier = Modifier.padding(start = 16.dp, top = 16.dp)  // Padding for the info header
+                        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                     )
                     Text(
-                        "The Recognition Test WOM-REST combines elements from well-known cognitive assessments like the Symbol Search Test (WAIS), the Wisconsin Card Sorting Test (WCST), and Raven's Progressive Matrices.",
+                        "The Stroop Test INH-REST is a neurocognitive assessment based on the classic Stroop test. It measures cognitive abilities related to attention and focusing by requiring the test-taker to respond to colour-word stimuli under go/no-go conditions.",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         color = colorResource(id = R.color.text),
-                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)  // Increased padding around the content text
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)
                     )
                     Text(
                         text = "Instructions",
@@ -117,14 +119,17 @@ fun StrooperInfoScreen(navController: NavController) {
                         modifier = Modifier
                             .padding(end = 16.dp, top = 16.dp)
                             .fillMaxWidth()
-                            .wrapContentWidth(Alignment.End)  // Align to the right
+                            .wrapContentWidth(Alignment.End)
                     )
                     Text(
-                        "In this test, you'll see a sequence of three objects on the screen. First, you'll need to memorize these objects. Then, on the next screen, you'll be asked to identify the original sequence from a group of four options. Your score will be based on the number of correct answers, which will determine your accuracy percentage.",
+                        "A single word, consisting of a colour name, will be displayed at the center of the screen.\n" +
+                                "You must press the button only if the colour name is printed in the matching colour.\n" +
+                                "Refrain from pressing the spacebar if the colour of the letters does not match the printed colour name."
+                               ,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         color = colorResource(id = R.color.text),
-                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)  // Increased padding around the content text
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)
                     )
                 }
                 item {

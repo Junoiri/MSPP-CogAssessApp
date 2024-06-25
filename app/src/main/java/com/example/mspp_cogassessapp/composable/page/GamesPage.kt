@@ -69,6 +69,9 @@ fun GamesPage(navController: NavController) {
                             if (title == "Namik") {
                                 navController.navigate(Screen.NamikInfo.route)
                             }
+                            if (title == "Strooper") {
+                                navController.navigate(Screen.StrooperInfo.route)
+                            }
                         }
                 ) {
                     Box(
