@@ -32,6 +32,7 @@ fun HomeScreen(navController: NavController) {
     val pageCount = 3
     val pagerState = rememberPagerState(pageCount = { pageCount })
     val scope = rememberCoroutineScope()
+    val text_color = colorResource(id = R.color.text)
 
     Scaffold(
         topBar = {

@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,11 +67,10 @@ fun GamesPage(navController: NavController) {
                         .aspectRatio(1f)  // Ensures the cards are square
                         .fillMaxWidth()
                         .clickable {
-                            if (title == "Namik") {
-                                navController.navigate(Screen.NamikInfo.route)
-                            }
-                            if (title == "Strooper") {
-                                navController.navigate(Screen.StrooperInfo.route)
+                            when (title) {
+                                "Namik" -> navController.navigate(Screen.NamikInfo.route)
+                                "Strooper" -> navController.navigate(Screen.StrooperInfo.route)
+                                "Vismer" -> navController.navigate(Screen.VismerInfo.route)
                             }
                         }
                 ) {
@@ -150,3 +150,4 @@ fun PreviewGamesPage() {
     val navController = rememberNavController()
     GamesPage(navController)
 }
+

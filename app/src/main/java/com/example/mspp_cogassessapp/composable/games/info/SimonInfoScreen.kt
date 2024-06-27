@@ -2,7 +2,9 @@ package com.example.mspp_cogassessapp.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -29,9 +31,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
+import com.example.mspp_cogassessapp.util.Screen
 
 @Composable
-fun SimonInfoScreen(navController: NavController) {
+fun VismerInfoScreen(navController: NavController) {
     // Load the font family
     val pressStartFontFamily = remember { FontFamily(Font(R.font.press_start)) }
 
@@ -42,7 +45,7 @@ fun SimonInfoScreen(navController: NavController) {
                 title = { Text("Test Info", color = colorResource(id = R.color.text)) },
                 navigationIcon = {
                     IconButton(onClick = { }) {
-                        Icon(Icons.Filled.Menu, contentDescription = "Menu", tint = colorResource(id = R.color.sapphire))
+                        Icon(Icons.Filled.Menu, contentDescription = "Menu", tint = colorResource(id = R.color.green))
                     }
                 },
                 actions = {
@@ -58,88 +61,96 @@ fun SimonInfoScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.mantle))
-                .padding(16.dp)  // Added padding inside the column
+                .padding(16.dp)
         ) {
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.bg_card_blue),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                        .padding(bottom = 16.dp)  // Added padding below the image
-                        .clip(RoundedCornerShape(16.dp))
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "Simon",
-                    fontSize = 32.sp,
-                    fontFamily = pressStartFontFamily,
-                    color = colorResource(id = R.color.blue),  // Use the blue color from colors.xml
-                    modifier = Modifier.padding(start = 16.dp)  // Increased padding around the game name text
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "Visual Memory Test",
-                    fontSize = 18.sp,
-                    fontFamily = pressStartFontFamily,
-                    color = colorResource(id = R.color.text),
-                    modifier = Modifier.padding(start = 16.dp, top = 6.dp)  // Padding on the left side
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "Info",
-                    fontSize = 24.sp,
-                    fontFamily = pressStartFontFamily,
-                    color = colorResource(id = R.color.blue),
-                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)  // Padding for the info header
-                )
-                Text(
-                    "The Simon Test combines elements from well-known cognitive assessments like the Symbol Search Test (WAIS), the Wisconsin Card Sorting Test (WCST), and Raven's Progressive Matrices.",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = colorResource(id = R.color.text),
-                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)  // Increased padding around the content text
-                )
-                Text(
-                    text = "Instructions",
-                    fontSize = 24.sp,
-                    fontFamily = pressStartFontFamily,
-                    color = colorResource(id = R.color.blue),
-                    modifier = Modifier
-                        .padding(end = 16.dp, top = 16.dp)
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.End)  // Align to the right
-                )
-                Text(
-                    "In this test, you'll see the word 'left' or 'right' appear in different positions on the screen. Press the left button if the word is 'left' and the right button if the word is 'right', regardless of its position. Your score will be based on the number of correct answers, which will determine your accuracy percentage.",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = colorResource(id = R.color.text),
-                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)  // Increased padding around the content text
-                )
+                item {
+                    Image(
+                        painter = painterResource(id = R.drawable.bg_card_green),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .padding(bottom = 16.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "Vismer",
+                        fontSize = 32.sp,
+                        fontFamily = pressStartFontFamily,
+                        color = colorResource(id = R.color.teal),
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "INH-REST: Equivalencies Test",
+                        fontSize = 18.sp,
+                        fontFamily = pressStartFontFamily,
+                        color = colorResource(id = R.color.text),
+                        modifier = Modifier.padding(start = 16.dp, top = 6.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "Info",
+                        fontSize = 24.sp,
+                        fontFamily = pressStartFontFamily,
+                        color = colorResource(id = R.color.teal),
+                        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                    )
+                    Text(
+                        "The Stroop Test INH-REST is a neurocognitive assessment based on the classic Stroop test. It measures cognitive abilities related to attention and focusing by requiring the test-taker to respond to colour-word stimuli under go/no-go conditions.",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = colorResource(id = R.color.text),
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)
+                    )
+                    Text(
+                        text = "Instructions",
+                        fontSize = 24.sp,
+                        fontFamily = pressStartFontFamily,
+                        color = colorResource(id = R.color.teal),
+                        modifier = Modifier
+                            .padding(end = 16.dp, top = 16.dp)
+                            .fillMaxWidth()
+                            .wrapContentWidth(Alignment.End)
+                    )
+                    Text(
+                        "A single word, consisting of a colour name, will be displayed at the center of the screen.\n" +
+                                "You must press the button only if the colour name is printed in the matching colour.\n" +
+                                "Refrain from pressing the spacebar if the colour of the letters does not match the printed colour name."
+                        ,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = colorResource(id = R.color.text),
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)
+                    )
+                }
+                item {
+                    Spacer(modifier = Modifier.height(100.dp)) // Add some space for the button
+                }
             }
             Box(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentAlignment = Alignment.BottomCenter
             ) {
-                Column(
-                    modifier = Modifier.align(Alignment.BottomCenter)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.button_blue),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .wrapContentWidth()
-                            .padding(10.dp)
-                    )
-                }
+                Image(
+                    painter = painterResource(id = R.drawable.button_green),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .padding(10.dp)
+                        .clickable {
+                            // Navigate to the next screen here
+                            navController.navigate(Screen.VismerPlay.route)
+                        }
+                )
             }
         }
     }
@@ -147,7 +158,7 @@ fun SimonInfoScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewSimonInfoScreen() {
+fun PreviewVismerInfoScreen() {
     val navController = rememberNavController()
-    SimonInfoScreen(navController)
+    VismerInfoScreen(navController)
 }
