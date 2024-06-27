@@ -23,6 +23,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
 import com.google.firebase.auth.FirebaseAuth
 
+/**
+ * This composable function displays the Simon game screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun SimonPlayScreen(navController: NavController) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -40,12 +45,20 @@ fun SimonPlayScreen(navController: NavController) {
     val words = listOf("left", "right")
     val positions = listOf("left", "center", "right")
 
+    /**
+     * This function updates the test by generating a new word and position.
+     */
     fun updateTest() {
         currentWord = words.random()
         currentPosition = positions.random()
         startTime = SystemClock.elapsedRealtime()
     }
 
+    /**
+     * This function checks the user's response and updates the score and trials left accordingly.
+     *
+     * @param isLeft A boolean indicating whether the user's response was "left".
+     */
     fun checkResponse(isLeft: Boolean) {
         val endTime = SystemClock.elapsedRealtime()
         val responseTime = endTime - startTime
@@ -163,6 +176,10 @@ fun SimonPlayScreen(navController: NavController) {
     }
 }
 
+
+/**
+ * This composable function is used to preview the SimonPlayScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewSimonPlayScreen() {

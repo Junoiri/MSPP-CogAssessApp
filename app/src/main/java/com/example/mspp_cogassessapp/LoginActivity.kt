@@ -14,6 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.composable.LoginScreen
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This class is responsible for handling the Login Activity.
+ *
+ * It sets the content view to the LoginScreen and sets up the navigation for it.
+ */
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

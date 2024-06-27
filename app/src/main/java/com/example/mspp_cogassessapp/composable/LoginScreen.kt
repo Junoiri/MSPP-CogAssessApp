@@ -21,6 +21,11 @@ import com.example.mspp_cogassessapp.firebase.Auth
 import com.example.mspp_cogassessapp.util.Screen
 import firebase.ErrorManager
 
+/**
+ * This composable function displays the Login Screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
@@ -41,7 +46,13 @@ fun LoginScreen(navController: NavController) {
         onForgotPasswordClick = { navController.navigate(Screen.ForgotPassword.route) }
     )
 }
-
+/**
+ * This composable function displays the content of the Login Screen.
+ *
+ * @param onRegisterClick A function to call when the Register button is clicked.
+ * @param onLoginClick A function to call when the Login button is clicked. It takes the entered email and password as parameters.
+ * @param onForgotPasswordClick A function to call when the Forgot Password text is clicked.
+ */
 @Composable
 fun LoginScreenContent(
     onRegisterClick: () -> Unit,
@@ -153,7 +164,9 @@ fun LoginScreenContent(
         }
     }
 }
-
+/**
+ * This composable function is used to preview the LoginScreen in Android Studio.
+ */
 @Preview
 @Composable
 fun PreviewLoginScreen() {

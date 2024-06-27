@@ -26,6 +26,11 @@ import com.example.mspp_cogassessapp.composable.ProfilePage
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
+/**
+ * This composable function displays the Home Screen with a bottom navigation bar.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -95,6 +100,9 @@ fun HomeScreen(navController: NavController) {
     }
 }
 
+/**
+ * This composable function is used to preview the HomeScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {

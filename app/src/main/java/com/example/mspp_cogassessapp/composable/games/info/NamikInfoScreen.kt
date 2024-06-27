@@ -32,13 +32,20 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This composable function displays the information screen for the Namik game.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun NamikInfoScreen(navController: NavController) {
     // Load the font family
     val pressStartFontFamily = remember { FontFamily(Font(R.font.press_start)) }
 
+    // Scaffold provides a framework that adheres to Material Design guidelines
     Scaffold(
         topBar = {
+            // TopAppBar is a container for the top app bar
             TopAppBar(
                 backgroundColor = colorResource(id = R.color.crust),
                 title = { Text("Test Info", color = colorResource(id = R.color.text)) },
@@ -62,12 +69,14 @@ fun NamikInfoScreen(navController: NavController) {
                 .background(colorResource(id = R.color.mantle))
                 .padding(16.dp)  // Added padding inside the column
         ) {
+            // LazyColumn is a vertically scrolling list that only composes and lays out the currently visible items
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 80.dp)  // Ensure there's enough space at the bottom for the button
             ) {
                 item {
+                    // Display the game image
                     Image(
                         painter = painterResource(id = R.drawable.bg_card_blue),
                         contentDescription = null,
@@ -79,6 +88,7 @@ fun NamikInfoScreen(navController: NavController) {
                             .clip(RoundedCornerShape(16.dp))
                     )
                     Spacer(modifier = Modifier.height(16.dp))
+                    // Display the game name
                     Text(
                         text = "Namik",
                         fontSize = 32.sp,
@@ -87,6 +97,7 @@ fun NamikInfoScreen(navController: NavController) {
                         modifier = Modifier.padding(start = 16.dp)  // Increased padding around the game name text
                     )
                     Spacer(modifier = Modifier.height(8.dp))
+                    // Display the game type
                     Text(
                         text = "Visual Memory Test",
                         fontSize = 18.sp,
@@ -95,6 +106,7 @@ fun NamikInfoScreen(navController: NavController) {
                         modifier = Modifier.padding(start = 16.dp, top = 6.dp)  // Padding on the left side
                     )
                     Spacer(modifier = Modifier.height(16.dp))
+                    // Display the game info
                     Text(
                         text = "Info",
                         fontSize = 24.sp,
@@ -109,6 +121,7 @@ fun NamikInfoScreen(navController: NavController) {
                         color = colorResource(id = R.color.text),
                         modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, top = 8.dp)  // Increased padding around the content text
                     )
+                    // Display the game instructions
                     Text(
                         text = "Instructions",
                         fontSize = 24.sp,
@@ -128,6 +141,7 @@ fun NamikInfoScreen(navController: NavController) {
                     )
                 }
             }
+            // Display the start game button at the bottom of the screen
             Box(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -153,6 +167,9 @@ fun NamikInfoScreen(navController: NavController) {
     }
 }
 
+/**
+ * This composable function is used to preview the NamikInfoScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewNamikInfoScreen() {

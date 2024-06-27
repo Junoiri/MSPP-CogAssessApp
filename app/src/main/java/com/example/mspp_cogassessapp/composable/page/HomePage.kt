@@ -12,6 +12,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mspp_cogassessapp.R
 
+/**
+ * This composable function displays the Home Page.
+ */
 @Preview
 @Composable
 fun HomePage() {
@@ -24,4 +27,12 @@ fun HomePage() {
     ) {
         Text("Welcome to the Home Page!")
     }
+}
+/**
+ * This composable function is used to preview the HomePage in Android Studio.
+ */
+@Preview
+@Composable
+fun PreviewHomePage() {
+    HomePage()
 }

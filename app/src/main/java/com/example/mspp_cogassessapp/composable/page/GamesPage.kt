@@ -28,6 +28,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.R
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This composable function displays the Games Page.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun GamesPage(navController: NavController) {
     Column(
@@ -144,6 +149,9 @@ fun GamesPage(navController: NavController) {
     }
 }
 
+/**
+ * This composable function is used to preview the GamesPage in Android Studio.
+ */
 @Composable
 @Preview(showBackground = true)
 fun PreviewGamesPage() {

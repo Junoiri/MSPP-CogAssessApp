@@ -13,6 +13,11 @@ import com.example.mspp_cogassessapp.R
 import com.example.mspp_cogassessapp.composable.SimonPlayScreen
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This class is responsible for handling the SimonPlay Activity.
+ *
+ * It sets the content view to the SimonPlayScreen and sets up the navigation for it.
+ */
 class SimonPlayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

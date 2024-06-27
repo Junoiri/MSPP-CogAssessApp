@@ -20,6 +20,11 @@ import com.example.mspp_cogassessapp.composable.VismerInfoScreen
 import com.example.mspp_cogassessapp.composable.WelcomeScreen
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This class is the main entry point of the application.
+ *
+ * It sets the content view to the AppNavigator which handles the navigation between different screens.
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * This composable function sets up the navigation for the application.
+ *
+ * It uses a NavHost to define the navigation graph, which includes all the screens in the application and their routes.
+ */
 @Composable
 fun AppNavigator() {
     val navController = rememberNavController()

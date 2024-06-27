@@ -12,6 +12,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mspp_cogassessapp.R
+/**
+ * This composable function displays the Forgot Password Screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun ForgotPasswordScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }

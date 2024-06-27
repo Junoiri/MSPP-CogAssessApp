@@ -30,11 +30,18 @@ import android.widget.Toast
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 
-
+/**
+ * This composable function displays the play screen for the Namik game.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun NamikPlayScreen(navController: NavController) {
-    val context = LocalContext.current  // Get the context for the toast message
-    val pressStartFontFamily = FontFamily(Font(R.font.press_start))
+    // Get the context for the toast message
+    val context = LocalContext.current
+    // Load the font family
+    val pressStartFontFamily = remember { FontFamily(Font(R.font.press_start)) }
+    // State variables for various UI elements and game logic
     var showAnswers by remember { mutableStateOf(false) }
     val blueColor = colorResource(id = R.color.blue)
     val redColor = colorResource(id = R.color.red)
@@ -50,6 +57,7 @@ fun NamikPlayScreen(navController: NavController) {
     var answerOptions by remember { mutableStateOf<List<List<Int>>>(emptyList()) } // Answer options state
     var selectedOption by remember { mutableStateOf<List<Int>?>(null) } // Selected option state
 
+    // LaunchedEffect for handling game logic
     LaunchedEffect(cycleCounter) {
         if (cycleCounter > 0 && cycleCounter % 10 == 0) {
             isPaused = true
@@ -57,6 +65,7 @@ fun NamikPlayScreen(navController: NavController) {
         }
     }
 
+    // LaunchedEffect for handling game logic
     LaunchedEffect(Unit) {
         sequence = generateSequence()
         answerOptions = generateAnswerOptions(sequence)
@@ -87,11 +96,13 @@ fun NamikPlayScreen(navController: NavController) {
         }
     }
 
+    // The loading progress animation
     val loadingProgress by animateFloatAsState(
         targetValue = if (counter > 0) counter / 4f else 0f,
         animationSpec = tween(durationMillis = 4000, easing = LinearEasing)
     )
 
+    // The main UI layout
     Scaffold(
         topBar = {
             TopAppBar(
@@ -193,6 +204,11 @@ fun NamikPlayScreen(navController: NavController) {
     }
 }
 
+/**
+ * This composable function displays the sequence for the Namik game.
+ *
+ * @param sequence The sequence to be displayed.
+ */
 @Composable
 fun DisplaySequence(sequence: List<Int>) {
     Column(
@@ -225,6 +241,13 @@ fun DisplaySequence(sequence: List<Int>) {
     }
 }
 
+/**
+ * This composable function displays the answer grid for the Namik game.
+ *
+ * @param options The answer options to be displayed.
+ * @param selectedOption The currently selected option.
+ * @param onOptionClick The function to be called when an option is clicked.
+ */
 @Composable
 fun DisplayAnswerGrid(options: List<List<Int>>, selectedOption: List<Int>?, onOptionClick: (List<Int>) -> Unit) {
     Column(
@@ -270,6 +293,12 @@ fun DisplayAnswerGrid(options: List<List<Int>>, selectedOption: List<Int>?, onOp
     }
 }
 
+/**
+ * This composable function displays the pause dialog for the Namik game.
+ *
+ * @param onResume The function to be called when the resume button is clicked.
+ * @param onQuit The function to be called when the quit button is clicked.
+ */
 @Composable
 fun PauseDialog(onResume: () -> Unit, onQuit: () -> Unit) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -291,6 +320,14 @@ fun PauseDialog(onResume: () -> Unit, onQuit: () -> Unit) {
     )
 }
 
+/**
+ * This composable function displays the result dialog for the Namik game.
+ *
+ * @param correctAnswers The number of correct answers.
+ * @param totalQuestions The total number of questions.
+ * @param onContinue The function to be called when the continue button is clicked.
+ * @param onQuit The function to be called when the quit button is clicked.
+ */
 @Composable
 fun ResultDialog(correctAnswers: Int, totalQuestions: Int, onContinue: () -> Unit, onQuit: () -> Unit) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -311,7 +348,11 @@ fun ResultDialog(correctAnswers: Int, totalQuestions: Int, onContinue: () -> Uni
         }
     )
 }
-
+/**
+ * This function generates a sequence of four random icons.
+ *
+ * @return A list of four random icons.
+ */
 fun generateSequence(): List<Int> {
     val icons = listOf(
         R.drawable.namik_ic_1,
@@ -324,6 +365,12 @@ fun generateSequence(): List<Int> {
     return icons.take(4)
 }
 
+/**
+ * This function generates a list of answer options for the Namik game.
+ *
+ * @param correctSequence The correct sequence of icons.
+ * @return A list of answer options, each of which is a list of four icons.
+ */
 fun generateAnswerOptions(correctSequence: List<Int>): List<List<Int>> {
     val icons = listOf(
         R.drawable.namik_ic_1,
@@ -347,6 +394,9 @@ fun generateAnswerOptions(correctSequence: List<Int>): List<List<Int>> {
     return (otherOptions + listOf(correctSequence)).shuffled()
 }
 
+/**
+ * This composable function is used to preview the NamikPlayScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewNamikPlayScreen() {

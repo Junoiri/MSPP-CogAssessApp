@@ -3,6 +3,13 @@ package com.example.mspp_cogassessapp.firebase
 import java.util.Date
 import java.sql.Time
 
+/**
+ * Fetches games for the currently logged in user from Firebase Firestore.
+ *
+ * @param onComplete A callback function that is invoked when the game fetching operation is complete.
+ * The function takes a List of GameDto objects as a parameter. If the game fetching is successful,
+ * the List contains the fetched games. If the game fetching fails, the List is null.
+ */
 data class GameDto(
     var email: String = "",
     var title: String = "",

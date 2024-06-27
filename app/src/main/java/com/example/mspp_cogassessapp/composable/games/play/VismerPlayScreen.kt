@@ -30,6 +30,11 @@ import android.widget.Toast
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 
+/**
+ * This composable function displays the Vismer game screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun VismerPlayScreen(navController: NavController) {
     val context = LocalContext.current  // Get the context for the toast message
@@ -206,6 +211,11 @@ fun VismerPlayScreen(navController: NavController) {
     }
 }
 
+/**
+ * This composable function displays the current icon in the Vismer game.
+ *
+ * @param icon The resource ID of the icon to display.
+ */
 @Composable
 fun DisplayIcon(icon: Int) {
     Column(
@@ -232,6 +242,13 @@ fun DisplayIcon(icon: Int) {
     }
 }
 
+/**
+ * This composable function displays a grid of letter options in the Vismer game.
+ *
+ * @param options The list of letter options to display.
+ * @param selectedOption The currently selected letter option.
+ * @param onOptionClick A function to call when a letter option is clicked.
+ */
 @Composable
 fun DisplayLetterGrid(options: List<Char>, selectedOption: Char?, onOptionClick: (Char) -> Unit) {
     Column(
@@ -275,6 +292,12 @@ fun DisplayLetterGrid(options: List<Char>, selectedOption: Char?, onOptionClick:
     }
 }
 
+/**
+ * This composable function displays a dialog that allows the user to resume or quit the Vismer game.
+ *
+ * @param onResume A function to call when the "Resume" button is clicked.
+ * @param onQuit A function to call when the "Quit" button is clicked.
+ */
 @Composable
 fun PauseDialogVismer(onResume: () -> Unit, onQuit: () -> Unit) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -302,6 +325,14 @@ fun PauseDialogVismer(onResume: () -> Unit, onQuit: () -> Unit) {
     )
 }
 
+/**
+ * This composable function displays a dialog that shows the user's results in the Vismer game.
+ *
+ * @param correctAnswers The number of correct answers the user gave.
+ * @param totalQuestions The total number of questions the user answered.
+ * @param onContinue A function to call when the "Continue" button is clicked.
+ * @param onQuit A function to call when the "Quit" button is clicked.
+ */
 @Composable
 fun ResultDialogVismer(correctAnswers: Int, totalQuestions: Int, onContinue: () -> Unit, onQuit: () -> Unit) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -323,6 +354,13 @@ fun ResultDialogVismer(correctAnswers: Int, totalQuestions: Int, onContinue: () 
     )
 }
 
+/**
+ * This function generates a new icon and a list of letter options for the Vismer game.
+ *
+ * @param icons The list of possible icons.
+ * @param names The list of names corresponding to the icons.
+ * @return A pair containing the new icon and the list of letter options.
+ */
 fun generateIconAndLetters(icons: List<Int>, names: List<String>): Pair<Int, List<Char>> {
     val index = (icons.indices).random()
     val icon = icons[index]
@@ -331,6 +369,9 @@ fun generateIconAndLetters(icons: List<Int>, names: List<String>): Pair<Int, Lis
     return Pair(icon, letters.shuffled())
 }
 
+/**
+ * This composable function is used to preview the VismerPlayScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewVismerPlayScreen() {

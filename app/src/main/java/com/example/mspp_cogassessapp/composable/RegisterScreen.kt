@@ -22,6 +22,11 @@ import com.example.mspp_cogassessapp.firebase.UserDataDto
 import com.example.mspp_cogassessapp.util.Screen
 import firebase.ErrorManager
 
+/**
+ * This composable function displays the Register Screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun RegisterScreen(navController: NavController) {
     val context = LocalContext.current
@@ -43,6 +48,12 @@ fun RegisterScreen(navController: NavController) {
     )
 }
 
+/**
+ * This composable function displays the content of the Register Screen.
+ *
+ * @param onLoginClick A function to call when the Login button is clicked.
+ * @param onRegisterClick A function to call when the Register button is clicked. It takes the entered email, password, name, sex, and age as parameters.
+ */
 @Composable
 fun RegisterScreenContent(
     onLoginClick: () -> Unit,
@@ -206,6 +217,9 @@ fun RegisterScreenContent(
     }
 }
 
+/**
+ * This composable function is used to preview the RegisterScreen in Android Studio.
+ */
 @Preview
 @Composable
 fun PreviewRegisterScreen() {

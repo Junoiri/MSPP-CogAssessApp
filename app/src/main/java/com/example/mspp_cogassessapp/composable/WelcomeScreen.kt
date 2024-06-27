@@ -21,6 +21,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.foundation.clickable
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This composable function displays the Welcome Screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun WelcomeScreen(navController: NavController) {
     val backgroundImage = painterResource(id = R.drawable.bg_login_cropped) // Ensure you have a background image
@@ -48,6 +53,14 @@ fun WelcomeScreen(navController: NavController) {
     }
 }
 
+/**
+ * This composable function displays the content of the Welcome Screen.
+ *
+ * @param onLoginClick A function to call when the Login button is clicked.
+ * @param onRegisterClick A function to call when the Register button is clicked.
+ * @param onContinueAsGuestClick A function to call when the Continue as Guest button is clicked.
+ * @param fontFamily The FontFamily to use for the text in this screen.
+ */
 @Composable
 fun WelcomeScreenContent(
     onLoginClick: () -> Unit,
@@ -99,6 +112,9 @@ fun WelcomeScreenContent(
         }
     }
 }
+/**
+ * This composable function is used to preview the WelcomeScreen in Android Studio.
+ */
 @Preview
 @Composable
 fun PreviewWelcomeScreen() {

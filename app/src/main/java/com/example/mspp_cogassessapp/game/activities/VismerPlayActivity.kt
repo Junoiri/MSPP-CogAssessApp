@@ -14,6 +14,11 @@ import com.example.mspp_cogassessapp.R
 import com.example.mspp_cogassessapp.composable.StrooperInfoScreen
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This class is responsible for handling the VismerPlay Activity.
+ *
+ * It sets the content view to the VismerPlayScreen and sets up the navigation for it.
+ */
 class VismerPlayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

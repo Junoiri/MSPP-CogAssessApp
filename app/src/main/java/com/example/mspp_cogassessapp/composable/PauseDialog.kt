@@ -8,6 +8,12 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import com.example.mspp_cogassessapp.R
 
+/**
+ * This composable function displays a dialog when the game is paused.
+ *
+ * @param onResume A function to call when the Resume button is clicked.
+ * @param onQuit A function to call when the Quit button is clicked.
+ */
 @Composable
 fun PauseDialog(onResume: () -> Unit, onQuit: () -> Unit) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))

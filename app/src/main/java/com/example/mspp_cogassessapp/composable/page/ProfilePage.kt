@@ -19,6 +19,9 @@ import com.example.mspp_cogassessapp.firebase.User
 import com.example.mspp_cogassessapp.firebase.UserDataDto
 import firebase.ErrorManager
 
+/**
+ * This composable function displays the Profile Page.
+ */
 @Composable
 fun ProfilePage() {
     val context = LocalContext.current
@@ -84,6 +87,12 @@ fun ProfilePage() {
     }
 }
 
+/**
+ * This composable function displays a profile item with a label and value.
+ *
+ * @param label The label for the profile item.
+ * @param value The value for the profile item.
+ */
 @Composable
 fun ProfileItem(label: String, value: String) {
     Row(
@@ -105,6 +114,9 @@ fun ProfileItem(label: String, value: String) {
     }
 }
 
+/**
+ * This composable function is used to preview the ProfilePage in Android Studio.
+ */
 @Preview
 @Composable
 fun PreviewProfilePage() {

@@ -10,6 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.composable.LoginScreen
 import com.example.mspp_cogassessapp.util.Screen
 
+/**
+ * This class is responsible for handling the Home Activity.
+ *
+ * It sets the content view to the HomeScreen and LoginScreen and sets up the navigation between them.
+ */
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

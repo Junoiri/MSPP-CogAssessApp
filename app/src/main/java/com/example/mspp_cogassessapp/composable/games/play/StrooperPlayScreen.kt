@@ -30,6 +30,11 @@ import java.sql.Time
 import java.util.Date
 import kotlin.random.Random
 
+/**
+ * This composable function displays the Strooper game screen.
+ *
+ * @param navController The NavController that this function will use to navigate between composables.
+ */
 @Composable
 fun StrooperPlayScreen(navController: NavController) {
     val pressStartFontFamily = FontFamily(Font(R.font.press_start))
@@ -60,6 +65,9 @@ fun StrooperPlayScreen(navController: NavController) {
         "BLACK" to Color.Black
     )
 
+    /**
+     * This function updates the test by generating a new word and color.
+     */
     fun updateTest() {
         val wordIndex = Random.nextInt(words.size)
         val colorIndex = Random.nextInt(colors.size)
@@ -68,6 +76,9 @@ fun StrooperPlayScreen(navController: NavController) {
         isMatching = counter < 9
     }
 
+    /**
+     * This function checks if the current word matches the current color and updates the score accordingly.
+     */
     fun checkMatch() {
         if (currentColor.toArgb() == wordColorMap[currentWord]?.toArgb()) {
             score++
@@ -202,6 +213,9 @@ fun LoadingStrip(color: Color, progress: Float) {
     )
 }
 
+/**
+ * This composable function is used to preview the StrooperPlayScreen in Android Studio.
+ */
 @Preview(showBackground = true)
 @Composable
 fun PreviewStrooperPlayScreen() {

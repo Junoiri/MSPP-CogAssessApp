@@ -9,7 +9,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.mspp_cogassessapp.composable.ForgotPasswordScreen
-
+/**
+ * This class is responsible for handling the Forgot Password Activity.
+ *
+ * It sets the content view to the ForgotPasswordScreen and enables edge-to-edge drawing.
+ */
 class ForgotPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * This composable function sets up the navigation for the Forgot Password Screen.
+ */
 @Composable
 fun ForgotPasswordNavigator() {
     val navController = rememberNavController()
