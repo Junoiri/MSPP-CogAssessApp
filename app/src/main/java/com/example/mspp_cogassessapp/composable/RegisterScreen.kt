@@ -55,6 +55,12 @@ fun RegisterScreenContent(
     var age by remember { mutableStateOf(16) }
     var sex by remember { mutableStateOf("Male") }
     val pink = colorResource(R.color.pink)
+    val blue = colorResource(R.color.blue)
+    val textColor = colorResource(R.color.text)
+    val crust = colorResource(R.color.crust)
+    var nameError by remember { mutableStateOf(false) }
+    var emailError by remember { mutableStateOf(false) }
+    var passwordError by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -63,15 +69,15 @@ fun RegisterScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Register", style = MaterialTheme.typography.h4)
+        Text(text = "Register", style = MaterialTheme.typography.h4, color = textColor)
 
         // Social Media Register Options
         Row {
-            Icon(Icons.Default.AccountCircle, contentDescription = "Google Register")
+            Icon(Icons.Default.AccountCircle, contentDescription = "Google Register", tint = textColor)
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(Icons.Default.AccountCircle, contentDescription = "Facebook Register")
+            Icon(Icons.Default.AccountCircle, contentDescription = "Facebook Register", tint = textColor)
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(Icons.Default.AccountCircle, contentDescription = "Twitter Register")
+            Icon(Icons.Default.AccountCircle, contentDescription = "Twitter Register", tint = textColor)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -80,8 +86,17 @@ fun RegisterScreenContent(
         OutlinedTextField(
             value = name,
             onValueChange = { name = it },
-            label = { Text("Name") },
+            label = { Text("Name", color = textColor) },
             singleLine = true,
+            isError = nameError,
+            textStyle = LocalTextStyle.current.copy(color = textColor),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = pink,
+                unfocusedBorderColor = pink,
+                errorBorderColor = pink,
+                errorLabelColor = pink,
+                errorTrailingIconColor = pink
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -90,8 +105,17 @@ fun RegisterScreenContent(
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
+            label = { Text("Email", color = textColor) },
             singleLine = true,
+            isError = emailError,
+            textStyle = LocalTextStyle.current.copy(color = textColor),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = pink,
+                unfocusedBorderColor = pink,
+                errorBorderColor = pink,
+                errorLabelColor = pink,
+                errorTrailingIconColor = pink
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -100,17 +124,27 @@ fun RegisterScreenContent(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text("Password", color = textColor) },
             singleLine = true,
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+            isError = passwordError,
+            textStyle = LocalTextStyle.current.copy(color = textColor),
             trailingIcon = {
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                     Icon(
                         imageVector = if (passwordVisibility) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                        contentDescription = "Toggle password visibility"
+                        contentDescription = "Toggle password visibility",
+                        tint = textColor
                     )
                 }
-            }
+            },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = pink,
+                unfocusedBorderColor = pink,
+                errorBorderColor = pink,
+                errorLabelColor = pink,
+                errorTrailingIconColor = pink
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -118,7 +152,7 @@ fun RegisterScreenContent(
         // Sex Selection
         Row {
             Icon(
-                Icons.Default.Male, contentDescription = "Male", tint = if (sex == "Male") pink else Color.Gray,
+                Icons.Default.Male, contentDescription = "Male", tint = if (sex == "Male") blue else Color.Gray,
                 modifier = Modifier.clickable { sex = "Male" }
             )
             Spacer(modifier = Modifier.width(16.dp))
@@ -138,11 +172,11 @@ fun RegisterScreenContent(
         // Age Selector
         Row {
             IconButton(onClick = { if (age > 16) age-- }) {
-                Icon(Icons.Default.Remove, contentDescription = "Decrease Age")
+                Icon(Icons.Default.Remove, contentDescription = "Decrease Age", tint = textColor)
             }
-            Text("$age")
+            Text("$age", color = textColor)
             IconButton(onClick = { age++ }) {
-                Icon(Icons.Default.Add, contentDescription = "Increase Age")
+                Icon(Icons.Default.Add, contentDescription = "Increase Age", tint = textColor)
             }
         }
 
@@ -150,17 +184,24 @@ fun RegisterScreenContent(
 
         // Register Button
         Button(
-            onClick = { onRegisterClick(email, password, name, sex, age) },
+            onClick = {
+                nameError = name.isEmpty()
+                emailError = email.isEmpty()
+                passwordError = password.isEmpty()
+                if (!nameError && !emailError && !passwordError) {
+                    onRegisterClick(email, password, name, sex, age)
+                }
+            },
             colors = ButtonDefaults.buttonColors(backgroundColor = pink)
         ) {
-            Text("REGISTER")
+            Text("REGISTER", color = crust)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Login Button
         TextButton(onClick = onLoginClick) {
-            Text("Already have an account? Login")
+            Text("Already have an account? Login", color = textColor)
         }
     }
 }
